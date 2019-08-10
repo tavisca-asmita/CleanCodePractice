@@ -14,7 +14,8 @@ namespace CartProblem
             AddProductToList();
         }
         public void AddProductToList()
-        {            
+        {   
+            
             product.AddProduct("Milk", "Dairy", 50);
             _itemList.Add(product);
             product.AddProduct("Eggs", "Poultry", 24.50);
