@@ -14,7 +14,7 @@
             discount = 0;
         }
         
-        public void AddProduct(string name, string category, double price)
+        public Product AddProduct(string name, string category, double price)
         {
             this.name = name;
             this.price = price;
@@ -60,6 +60,8 @@
                 this.category = new Miscellaneous();
                 discount = this.category.GetCategoryDiscount();
             }
+
+            return this;
         }
 
         public string GetProductName()

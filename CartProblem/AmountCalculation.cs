@@ -10,8 +10,9 @@ namespace CartProblem
             _amount = 0;
         }
 
-        public double GetFinalAmount(List<Product> itemList, Dictionary<Product, int> cartItemList)
+        public double GetFinalAmount(Dictionary<Product, int> cartItemList)
         {
+            _amount = 0;
             foreach (var product in cartItemList)
             {
                 var discountCalculation = new DiscountCalculation();
@@ -21,5 +22,6 @@ namespace CartProblem
 
             return _amount;
         }
+                
     }
 }

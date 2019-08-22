@@ -9,8 +9,8 @@ namespace CartProblem
         {
             Shopping shopping = new Shopping();
             shopping.AddItem("Milk", 1);
-            Console.WriteLine(shopping.CalculateTotalAmount());
-
+            shopping.AddItem("Eggs", 2);
+            Console.WriteLine(shopping.CalculateTotalAmount());            
         }
     }
 }

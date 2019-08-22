@@ -7,15 +7,19 @@ namespace CartProblem
     {
         private Cart _cart;
         private Admin _admin;
+        private AmountCalculation _amountCalculation;
+        private DiscountCalculation _discountCalculation;
         private double totalDiscount;
-        private double totalAmount;
+        //private double totalAmount;
 
         public Shopping()
         {
+            _amountCalculation = new AmountCalculation();
             _admin = new Admin();
             _cart = new Cart(_admin.GetProductsList());
+            _discountCalculation = new DiscountCalculation();
             totalDiscount = 0;
-            totalAmount = 0;
+            //totalAmount = 0;
         }
 
         public void AddItem(string name, int quantity)
@@ -57,12 +61,11 @@ namespace CartProblem
 
         public double CalculateTotalDiscount()
         { 
-            var discountCalculation = new DiscountCalculation();
             foreach(var item in _cart.GetCartItemList())
             {
                 int discountRate = item.Key.GetProductDiscount();
                 double amount = item.Key.GetProductPrice() * item.Value;
-                totalDiscount+= discountCalculation.GetDiscount(amount, discountRate);
+                totalDiscount+= _discountCalculation.GetDiscount(amount, discountRate);
             }
 
             return totalDiscount;
@@ -70,11 +73,10 @@ namespace CartProblem
 
         public double CalculateTotalAmount()
         {
-            var amountCalculation = new AmountCalculation();
-            return amountCalculation.GetFinalAmount(_admin.GetProductsList(), _cart.GetCartItemList());
+            return _amountCalculation.GetFinalAmount(_cart.GetCartItemList());
             
         }
-
+                
     }
 
 }

@@ -4,13 +4,14 @@
     {
         
         public double GetDiscount(double amount, int discountRate)
-        {
-            return (amount * (discountRate / 100));
+        {            
+            return amount * ((double)(discountRate) / 100);
         }
 
         public double GetDiscountedAmount(double amount, int discountRate)
         {
-            return (amount - (amount * (discountRate / 100)));
+            double amt = amount - (amount * ((double) (discountRate) / 100));
+            return amt;
         }
         
     }
