@@ -3,7 +3,7 @@ using System.Text;
 
 namespace CartProblem
 {
-    class Shopping
+    public class Shopping
     {
         private Cart _cart;
         private Admin _admin;
