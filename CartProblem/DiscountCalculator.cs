@@ -1,6 +1,6 @@
 ﻿namespace CartProblem
 {
-    public class DiscountCalculation
+    public class DiscountCalculator
     {
         
         public double GetDiscount(double amount, int discountRate)

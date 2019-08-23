@@ -7,56 +7,66 @@ namespace CartProblem
     {
         private Cart _cart;
         private Admin _admin;
-        private AmountCalculation _amountCalculation;
-        private DiscountCalculation _discountCalculation;
+        private CartCostCalculator _amountCalculation;
+        private DiscountCalculator _discountCalculation;
         private double totalDiscount;
-        //private double totalAmount;
-
+        
         public Shopping()
         {
-            _amountCalculation = new AmountCalculation();
+            _amountCalculation = new CartCostCalculator();
             _admin = new Admin();
             _cart = new Cart(_admin.GetProductsList());
-            _discountCalculation = new DiscountCalculation();
+            _discountCalculation = new DiscountCalculator();
             totalDiscount = 0;
-            //totalAmount = 0;
         }
 
         public void AddItem(string name, int quantity)
         {
             bool flag = false;
 
-           foreach(var item in _admin.GetProductsList())
-           {
-                if (item.GetProductName().Contains(name))
+            if (quantity < 1)
+                throw new NegativeQuantityException();
+            else
+            {
+                foreach (var item in _admin.GetProductsList())
                 {
-                    _cart.AddItemToCart(item, quantity);
-                    flag = true;
-                    break;
+                    if (item.GetProductName().Contains(name))
+                    {
+                        _cart.AddItemToCart(item, quantity);
+                        flag = true;
+                        break;
+                    }
                 }
-           }
 
-            if (flag == false)
-                new ItemNotFoundException();
+                if (flag == false)
+                    new ItemNotFoundException();
+
+            }            
         }
 
 
         public void RemoveItem(string name, int quantity)
         {
-            bool flag = false; 
+            bool flag = false;
 
-            foreach (var item in _cart.GetCartItemList())
+            if (quantity < 1)
+                throw new NegativeQuantityException();
+
+            else
             {
-                if (item.Key.GetProductName().Contains(name))
+                foreach (var item in _cart.GetCartItemList())
                 {
-                    _cart.RemoveItemFromCart(item.Key, quantity);
-                    flag = true;
-                    break;
+                    if (item.Key.GetProductName().Contains(name))
+                    {
+                        _cart.RemoveItemFromCart(item.Key, quantity);
+                        flag = true;
+                        break;
+                    }
                 }
-            }
 
-            if (flag == false)
-                new ItemNotFoundException();
+                if (flag == false)
+                    new ItemNotFoundException();
+            }            
         }
 
         public double CalculateTotalDiscount()

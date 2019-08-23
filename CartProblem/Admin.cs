@@ -4,7 +4,7 @@ namespace CartProblem
 {
     public class Admin
     {
-        private static List<Product> _itemList;        
+        private List<Product> _itemList;        
 
         public Admin()
         {            

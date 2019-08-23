@@ -2,20 +2,15 @@
 
 namespace CartProblem
 {
-    public class AmountCalculation
+    public class CartCostCalculator
     {
-        private double _amount;
-        public AmountCalculation()
-        {
-            _amount = 0;
-        }
-
+        
         public double GetFinalAmount(Dictionary<Product, int> cartItemList)
         {
-            _amount = 0;
+            double _amount = 0;
             foreach (var product in cartItemList)
             {
-                var discountCalculation = new DiscountCalculation();
+                var discountCalculation = new DiscountCalculator();
                 _amount += discountCalculation.GetDiscountedAmount((product.Value * product.Key.GetProductPrice()), (product.Key.GetProductDiscount()));
                 
             }

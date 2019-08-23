@@ -4,7 +4,7 @@ namespace CartProblem
 {
     public class Cart
     {
-        private List<Product> _itemList;
+        private readonly List<Product> _itemList;
         private Dictionary<Product, int> _cartItemList;
         
         public Cart(List<Product> itemList)
@@ -16,9 +16,9 @@ namespace CartProblem
         public void AddItemToCart(Product product, int quantity)
         {
             if (_cartItemList.ContainsKey(product))
-            {
-                int updatedquantity = _cartItemList[product] + quantity;
-                _cartItemList[product] = updatedquantity;
+            {    
+                    int updatedquantity = _cartItemList[product] + quantity;
+                    _cartItemList[product] = updatedquantity;                                
             }
 
             else
